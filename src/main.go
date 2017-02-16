@@ -48,7 +48,7 @@ func Partition (subSlice []int) []int {
 			rightLoc--
 		}
 
-		if subSlice[leftLoc] >= subSlice[rightLoc] {
+		if leftLoc >= rightLoc {
 			subSlice[rightLoc], subSlice[pivotLoc] = subSlice[pivotLoc], subSlice[rightLoc]
 			isDone = true
 		} else if subSlice[leftLoc] != subSlice[rightLoc] {
