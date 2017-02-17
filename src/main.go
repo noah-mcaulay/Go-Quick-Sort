@@ -26,7 +26,7 @@ func main() {
 	fmt.Println(time.Now().Sub(before))
 
 	if sort.IntsAreSorted(anArray[0:]) {
-		fmt.Println("We did it bois in ")
+		fmt.Println("We did it bois")
 	}
 }
 
