@@ -1,18 +1,33 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"sort"
+	"time"
+)
 
 func main() {
 
-	anArray := [10]int {10, 6, 7, 4, 15, 2, 3, 8, 9, 5}
+	anArray := [1000000]int {}
+
+	for i := 0; i < len(anArray); i++ {
+		anArray[i] = rand.Int()
+	}
 
 	fmt.Println("Hello World!")
 
-	fmt.Println(anArray)
+	//fmt.Println(anArray)
+
+	before := time.Now()
 
 	QuickSort(anArray[0:])
 
-	fmt.Println(anArray)
+	fmt.Println(time.Now().Sub(before))
+
+	if sort.IntsAreSorted(anArray[0:]) {
+		fmt.Println("We did it bois in ")
+	}
 }
 
 func QuickSort (unsorted []int) []int {
@@ -28,11 +43,21 @@ func QuickSort (unsorted []int) []int {
 
 func Partition (subSlice []int) []int {
 
+	if len(subSlice) < 2 {
+
+		return subSlice
+
+	} else if len(subSlice) == 2 {
+
+		if subSlice[0] > subSlice[1] {
+			subSlice[0], subSlice[1] = subSlice[1], subSlice[0]
+		}
+
+		return subSlice
+	}
+
 	pivotLoc := len(subSlice) - 1
 
-	var test int = len(subSlice) - 1
-
-	fmt.Print(test)
 	leftLoc := 0
 	rightLoc := pivotLoc - 1
 
@@ -49,17 +74,15 @@ func Partition (subSlice []int) []int {
 		}
 
 		if leftLoc >= rightLoc {
-			subSlice[rightLoc], subSlice[pivotLoc] = subSlice[pivotLoc], subSlice[rightLoc]
+			subSlice[leftLoc], subSlice[pivotLoc] = subSlice[pivotLoc], subSlice[leftLoc]
 			isDone = true
 		} else if subSlice[leftLoc] != subSlice[rightLoc] {
 			subSlice[leftLoc], subSlice[rightLoc] = subSlice[rightLoc], subSlice[leftLoc]
 		}
 	}
 
-
-
-	//subSlice[pivotLoc], subSlice[leftLoc] = subSlice[rightLoc], subSlice[pivotLoc]
-
+	Partition(subSlice[0:leftLoc])
+	Partition(subSlice[rightLoc:])
 
 	return subSlice
 }
