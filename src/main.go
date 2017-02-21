@@ -10,11 +10,12 @@ import (
 )
 
 var wg sync.WaitGroup
+const thresh = 1000
 
 
 func main() {
 
-	anArray := [20]int {}
+	anArray := [1000]int {}
 
 	for i := 0; i < len(anArray); i++ {
 		anArray[i] = rand.Int()
@@ -29,11 +30,9 @@ func main() {
 
 	before := time.Now()
 
-	runtime.GOMAXPROCS(2)
-	wg.Add(2)
-	go QuickSort(anArray[0:len(anArray)/2-1])
-	go QuickSort(anArray[len(anArray)/2:])
-	wg.Wait()
+	runtime.GOMAXPROCS(8)
+
+	QuickSort(anArray[0:])
 
 	fmt.Println(time.Now().Sub(before))
 
@@ -58,14 +57,15 @@ func QuickSort (unsorted []int) {
 	//for i := 0; i < numProcs; i++ {
 	//	go Partition
 	//}
+	wg.Wait()
 
-	defer wg.Done()
 }
 
 func Partition (subSlice []int) []int {
 
 	if len(subSlice) < 2 {
 
+		wg.Done()
 		return subSlice
 
 	} else if len(subSlice) == 2 {
@@ -74,6 +74,7 @@ func Partition (subSlice []int) []int {
 			subSlice[0], subSlice[1] = subSlice[1], subSlice[0]
 		}
 
+		wg.Done()
 		return subSlice
 	}
 
@@ -102,8 +103,12 @@ func Partition (subSlice []int) []int {
 		}
 	}
 
-	Partition(subSlice[0:leftLoc])
-	Partition(subSlice[rightLoc:])
+	wg.Add(1)
+	go Partition(subSlice[0:leftLoc])
+	wg.Add(1)
+	go Partition(subSlice[rightLoc:])
+
+	defer wg.Done()
 
 	return subSlice
 }
