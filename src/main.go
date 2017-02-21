@@ -17,8 +17,6 @@ func main() {
 
 	fmt.Println("Hello World!")
 
-	//fmt.Println(anArray)
-
 	before := time.Now()
 
 	QuickSort(anArray[0:])
@@ -30,15 +28,13 @@ func main() {
 	}
 }
 
-func QuickSort (unsorted []int) []int {
+func QuickSort (unsorted []int) {
 
 	if len(unsorted) < 2 {
-		return unsorted
+		return
 	}
 
-	//unsorted[0] = 42
-
-	return Partition (unsorted[0:])
+	Partition (unsorted[0:])
 }
 
 func Partition (subSlice []int) []int {
