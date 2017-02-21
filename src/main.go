@@ -5,16 +5,11 @@ import (
 	"math/rand"
 	"sort"
 	"time"
-	"runtime"
-	"sync"
 )
-
-var wg sync.WaitGroup
-
 
 func main() {
 
-	anArray := [20]int {}
+	anArray := [1000000]int {}
 
 	for i := 0; i < len(anArray); i++ {
 		anArray[i] = rand.Int()
@@ -22,44 +17,24 @@ func main() {
 
 	fmt.Println("Hello World!")
 
-	//fmt.Println(anArray)
-
-
-	fmt.Println(anArray)
-
 	before := time.Now()
 
-	runtime.GOMAXPROCS(2)
-	wg.Add(2)
-	go QuickSort(anArray[0:len(anArray)/2-1])
-	go QuickSort(anArray[len(anArray)/2:])
-	wg.Wait()
+	QuickSort(anArray[0:])
 
 	fmt.Println(time.Now().Sub(before))
 
 	if sort.IntsAreSorted(anArray[0:]) {
 		fmt.Println("We did it bois")
 	}
-
-	fmt.Println(anArray)
 }
 
 func QuickSort (unsorted []int) {
-
-	//arrayLen := len(unsorted)
 
 	if len(unsorted) < 2 {
 		return
 	}
 
-	//unsorted[0] = 42
-
 	Partition (unsorted[0:])
-	//for i := 0; i < numProcs; i++ {
-	//	go Partition
-	//}
-
-	defer wg.Done()
 }
 
 func Partition (subSlice []int) []int {
