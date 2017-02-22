@@ -3,13 +3,14 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"sort"
+	//"sort"
 	"time"
+	"sort"
 )
 
 func main() {
 
-	anArray := [1000000]int {}
+	anArray := [9500000]int {}
 
 	for i := 0; i < len(anArray); i++ {
 		anArray[i] = rand.Int()

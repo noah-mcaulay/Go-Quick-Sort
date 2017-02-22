@@ -74,7 +74,7 @@ func BenchmarkQuickSort5k(b *testing.B) {
 	}
 
 	// ---- Get sorted arrays ----
-
+	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
 		QuickSort(Bench5K[0:])
 	}
