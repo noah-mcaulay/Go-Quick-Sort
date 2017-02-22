@@ -82,3 +82,22 @@ func BenchmarkQuickSort5k(b *testing.B) {
 
 }
 
+func BenchmarkQuickSort9K(b *testing.B) {
+
+	rand.Seed(42)
+
+	Bench9K := [9000]int{}
+
+	// Populate Test9K with random values
+	for i := 0; i < len(Bench9K[0:]); i++ {
+		Bench9K[i] = rand.Int()
+	}
+
+	// ---- Get sorted arrays ----
+	b.ResetTimer()
+	for n := 0; n < b.N; n++ {
+		QuickSort(Bench9K[0:])
+	}
+
+
+}
