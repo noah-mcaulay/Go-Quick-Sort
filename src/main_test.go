@@ -62,21 +62,22 @@ func TestQuickSort(t *testing.T) {
 
 }
 
-func BenchmarkQuickSort5k(b *testing.B) {
+func BenchmarkQuickSort1M(b *testing.B) {
 
 	rand.Seed(42)
 
-	Bench5K := [5000]int{}
+	Bench1M := [10000]int{}
 
 	// Populate Test1K with random values
-	for i := 0; i < len(Bench5K[0:]); i++ {
-		Bench5K[i] = rand.Int()
+	for i := 0; i < len(Bench1M[0:]); i++ {
+		Bench1M[i] = rand.Int()
 	}
 
-	// ---- Get sorted arrays ----
 	b.ResetTimer()
+
+	// ---- Get sorted arrays ----
 	for n := 0; n < b.N; n++ {
-		QuickSort(Bench5K[0:])
+		QuickSort(Bench1M[0:])
 	}
 
 

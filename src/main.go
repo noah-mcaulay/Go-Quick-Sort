@@ -4,28 +4,39 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
-	"sort"
+	//"sort"
 )
 
 func main() {
 
-	anArray := [9500000]int {}
+	const PROBLEM_SIZE = 10000000
+	const NUM_RUNS = 5
 
-	for i := 0; i < len(anArray); i++ {
-		anArray[i] = rand.Int()
+	var totalTime time.Duration
+
+	anArray := [PROBLEM_SIZE]int {}
+
+	for run := 0; run < NUM_RUNS; run++ {
+
+		//fmt.Println(cap(anArray), len(anArray))
+
+		for index := 0; index < len(anArray); index++ {
+			anArray[index] = rand.Int()
+		}
+
+		before := time.Now()
+
+		QuickSort(anArray[0:])
+
+		fmt.Println("Run: ", run, "Duration: ", time.Now().Sub(before))
+		totalTime += time.Now().Sub(before)
+
+		//if sort.IntsAreSorted(anArray[0:]) {
+		//	fmt.Println("Run 0:", run, "is sorted correctly.")
+		//}
 	}
 
-	fmt.Println("Hello World!")
-
-	before := time.Now()
-
-	QuickSort(anArray[0:])
-
-	fmt.Println(time.Now().Sub(before))
-
-	if sort.IntsAreSorted(anArray[0:]) {
-		fmt.Println("We did it bois")
-	}
+	fmt.Println("The average duration for ", NUM_RUNS, " runs is: ", totalTime / NUM_RUNS)
 }
 // QuickSort entry point
 // It initially checks for an empty or single-value slice to make sure we don't do any meaningless work
@@ -70,13 +81,13 @@ func Partition (subSlice []int) []int {
 
 	for !isDone {
 
-		// Find first element on the left that is greater than pivot
-		for subSlice[leftLoc] < subSlice[pivotLoc] {
+		// Find first element on the left that is greater than pivot, and check boundaries
+		for (subSlice[leftLoc] < subSlice[pivotLoc]) && (leftLoc + 1 < len(subSlice)) {
 			leftLoc++
 		}
 
-		// Find first element on the right that is less than pivot
-		for subSlice[rightLoc] > subSlice[pivotLoc] {
+		// Find first element on the right that is less than pivot, and check boundaries
+		for (subSlice[rightLoc] > subSlice[pivotLoc]) && (rightLoc - 1 > -1) {
 			rightLoc--
 		}
 
