@@ -5,12 +5,15 @@ import (
 	"math/rand"
 	"time"
 	//"sort"
+	"sort"
 )
 
 func main() {
 
 	const PROBLEM_SIZE = 10000000
 	const NUM_RUNS = 5
+
+	rand.Seed(42)
 
 	var totalTime time.Duration
 
