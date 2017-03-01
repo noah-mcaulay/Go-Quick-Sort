@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
-	//"sort"
 	"sort"
 )
 
@@ -21,8 +20,6 @@ func main() {
 
 	for run := 0; run < NUM_RUNS; run++ {
 
-		//fmt.Println(cap(anArray), len(anArray))
-
 		for index := 0; index < len(anArray); index++ {
 			anArray[index] = rand.Int()
 		}
@@ -34,9 +31,9 @@ func main() {
 		fmt.Println("Run: ", run, "Duration: ", time.Now().Sub(before))
 		totalTime += time.Now().Sub(before)
 
-		//if sort.IntsAreSorted(anArray[0:]) {
-		//	fmt.Println("Run 0:", run, "is sorted correctly.")
-		//}
+		if sort.IntsAreSorted(anArray[0:]) {
+			fmt.Println("Run 0:", run, "is sorted correctly.")
+		}
 	}
 
 	fmt.Println("The average duration for ", NUM_RUNS, " runs is: ", totalTime / NUM_RUNS)
