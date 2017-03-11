@@ -36,7 +36,7 @@ func main() {
 		}
 	}
 
-	fmt.Println("The average duration for ", NUM_RUNS, " runs is: ", totalTime / NUM_RUNS)
+	fmt.Println("The average duration for ", NUM_RUNS, " runs of ", PROBLEM_SIZE, " is: ", totalTime / NUM_RUNS)
 }
 // QuickSort entry point
 // It initially checks for an empty or single-value slice to make sure we don't do any meaningless work
