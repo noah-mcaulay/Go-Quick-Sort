@@ -3,7 +3,6 @@ package main
 import (
 	"testing"
 	"math/rand"
-	//"sort"
 	"sort"
 )
 
@@ -66,7 +65,7 @@ func BenchmarkQuickSort1M(b *testing.B) {
 
 	rand.Seed(42)
 
-	Bench1M := [10000]int{}
+	Bench1M := [1000000]int{}
 
 	// Populate Test1K with random values
 	for i := 0; i < len(Bench1M[0:]); i++ {
