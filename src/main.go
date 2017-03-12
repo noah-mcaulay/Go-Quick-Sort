@@ -7,6 +7,7 @@ import (
 	"sort"
 )
 
+// Main function that includes simple benchmarking.
 func main() {
 
 	const PROBLEM_SIZE = 10000000
@@ -45,8 +46,6 @@ func QuickSort (unsorted []int) {
 	if len(unsorted) > 1 {
 		Partition(unsorted[0:])
 	}
-
-
 }
 
 // Partition the passed in array
