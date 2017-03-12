@@ -51,12 +51,12 @@ func QuickSort (unsorted []int) {
 // Partition the passed in array
 // 	For example, all values smaller than the pivot (the right-most element) are placed on the left side
 // 	of the pivot, and all values greater than the pivot are placed on the right side of the pivot
-func Partition (subSlice []int) []int {
+func Partition (subSlice []int) {
 
 	// Check if subSlice is empty or single-value, and return if so since we don't need to sort it
 	if len(subSlice) < 2 {
 
-		return subSlice
+		return
 
 	// If the len of subSlice is 2, then swap the elements (if needed) and return
 	} else if len(subSlice) == 2 {
@@ -65,7 +65,7 @@ func Partition (subSlice []int) []int {
 			subSlice[0], subSlice[1] = subSlice[1], subSlice[0]
 		}
 
-		return subSlice
+		return
 	}
 
 	// Get position of pivot (right-most element)
@@ -107,5 +107,4 @@ func Partition (subSlice []int) []int {
 	// Recursively call partition on right side of partition
 	Partition(subSlice[rightLoc:])
 
-	return subSlice
 }
