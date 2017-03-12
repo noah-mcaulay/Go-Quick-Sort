@@ -10,7 +10,7 @@ import (
 func main() {
 
 	const PROBLEM_SIZE = 10000000
-	const NUM_RUNS = 5
+	const NUM_RUNS = 10
 
 	rand.Seed(42)
 
