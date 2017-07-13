@@ -7,7 +7,7 @@ import (
 	"sort"
 )
 
-// Main function that includes simple benchmarking.
+// Main function that includes simple benchmarking.  
 func main() {
 
 	const PROBLEM_SIZE = 10000000
