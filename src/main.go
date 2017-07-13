@@ -43,7 +43,6 @@ func main() {
 // It initially checks for an empty or single-value slice to make sure we don't do any meaningless work
 func QuickSort (unsorted []int) {
 
-	return; // quick test for travis CI failures
 	if len(unsorted) > 1 {
 		Partition(unsorted[0:])
 	}
